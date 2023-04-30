@@ -145,46 +145,33 @@ namespace FEM
     // - N_PML : number of elements in PML
     // - h_PML : spacing between nodes in PML
     // - k : wavenumber (NOTE INT TYPE)
-    double PML_CONVERGENCE_TEST(double N_PML, double h_PML, int k, int n, bool sup = true)
+    // - n_pml : the number of nodes used per element in the PML
+    double PML_CONVERGENCE_TEST(double N_PML, double h_PML, int k, int n_PML ,bool sup = true)
     {
-        // values used in the bulk will depend on the element type we are using
-        double h_comp;
-        double N_comp;
-
-        // detect the type of element we are using
-        if (n == 2)
-        {
-            h_comp = 0.001 / k;
-            N_comp = 1000 * k;
-        }
-        if (n == 3)
-        {
-            h_comp = 0.01 / k;
-            N_comp = 50 * k;
-        }
-        if (n == 4)
-        {
-            h_comp = 1.0 / 99 * k;
-            N_comp = 33 * k;
-        }
-
         // suppress cout
         if (sup == true)
         {
             cout.setstate(std::ios_base::failbit);
         }
 
+        // use 400 3 node elements in the bulk
+        double h_comp = 0.001;
+        double N_comp = 500;
+        int n = 3;
+
         // form bulk elements vector
         vector<double> Element_Edge_Pos = FEM::form_equal_spacing(h_comp, N_comp, n);
+         vector<int> Nodes_Per_Element(Element_Edge_Pos.size() - 1, n);
 
         // now add PML elements
         for (int i = 1; i <= N_PML; i++)
         {
             Element_Edge_Pos.push_back(Element_Edge_Pos[N_comp] +
-                                       i * h_PML * (n - 1));
+                                       i * h_PML * (n_PML - 1));
+
+            Nodes_Per_Element.push_back(n_PML);
         }
 
-        vector<int> Nodes_Per_Element(Element_Edge_Pos.size() - 1, n);
 
         Mesh<Node> mesh(Element_Edge_Pos, Nodes_Per_Element);
         mesh.build();
@@ -199,8 +186,8 @@ namespace FEM
         mesh.set_PML_elements(PML_Elements);
 
         // Dirichlet conditions
-        int Num_Nodes = N * (n - 1) + 1;
-        vector<int> Dir_Boundary_Nodes{0, Num_Nodes - 1};
+        int Num_Nodes = (n-1)*N_comp  + N_PML*(n_PML-1) + 1;
+        vector<int> Dir_Boundary_Nodes{0, Num_Nodes-1};
         complex<double> start(0.0, 0.5);
         complex<double> end(0.0, 0.0);
         vector<complex<double>> Dir_Conditions{start, end};
@@ -210,10 +197,10 @@ namespace FEM
         mesh.apply_Dirichelet_BCs(Dir_Conditions, Dir_Boundary_Nodes);
         mesh.assign_eq_nums();
         mesh.initialise_res_and_jac();
-
-        mesh.display();
-
         mesh.next_iteration(k);
+
+        mesh.display(true);
+
 
         // now calulate errors
         // using L^2 error
@@ -243,11 +230,16 @@ namespace FEM
         cout << "################################## \n"
              << endl;
         cout << "k = " << k << endl;
+        cout << "n_PML = " << n_PML << endl;
         cout << "N_PML = " << N_PML << endl;
-        cout << "delta_PML = " << N_PML * (n - 1) * h_PML << endl;
-        cout << "k * delta_PML = " << k * N_PML * (n - 1) * h_PML << endl;
+        cout << "delta_PML = " << N_PML * (n_PML - 1) * h_PML << endl;
+        cout << "k * delta_PML = " << k * N_PML * (n_PML- 1) * h_PML << endl;
         cout << "L2 Error = " << sqrt(sum_2) << endl;
         cout << "\n##################################" << endl;
+
+        ofstream outfile("values.csv");
+        mesh.write_nodal_values(outfile);
+
         return sqrt(sum_2);
     }
 

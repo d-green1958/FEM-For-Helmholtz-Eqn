@@ -546,6 +546,7 @@ public:
             }
         }
         cout << "ERROR: OUT OF MESH!" << endl;
+        throw invalid_argument("Attempting To Interpolate Outside Of Mesh!");
 
         complex<double> empty(0, 0);
         return empty;
