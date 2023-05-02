@@ -11,3 +11,6 @@ The correct order is:
 7. Initalise the mesh Res and Jac
 8. Calulate the iteration
 (order is only a guide, can be changed a little)
+
+
+
