@@ -12,3 +12,8 @@ The correct order is:
 8. Calulate the iteration
 (order is only a guide, can be changed a little)
 
+
+
+
+
+
