@@ -133,6 +133,7 @@ namespace FEM
         cout << "################################## \n" << endl;
         cout << "k = " << k << endl;
         cout << "n = " << n << endl;
+        cout << "h = " << h << endl;
         cout << "L_2 Error = " << sqrt(sum_2) << endl;
         cout << "L_E Error = " << sqrt(sum_E) << endl;
         cout << "\n##################################" << endl;
@@ -341,12 +342,12 @@ namespace FEM
         cout << "The correct order is:" << endl;
         cout << "1. Initialise a mesh giving it Element_Edge_Pos and Nodes_Per_Element" << endl;
         cout << "2. Build the mesh" << endl;
-        cout << "3. Apply the intial conditions" << endl;
+        cout << "3. Apply the initial conditions" << endl;
         cout << "4. Apply the Dirichlet conditions" << endl;
         cout << "5. Assign Eqn Numbers" << endl;
         cout << "6. Apply Neumann Conditions / set PML elements" << endl;
-        cout << "7. Initalise the mesh Res and Jac" << endl;
-        cout << "8. Calulate the iteration" << endl;
+        cout << "7. Initialise the mesh Res and Jac" << endl;
+        cout << "8. Calculate the iteration" << endl;
         cout << "(order is only a guide, can be changed a little)" << endl;
 
     }

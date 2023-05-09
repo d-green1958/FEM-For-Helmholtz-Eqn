@@ -283,10 +283,6 @@ public:
     }
 };
 
-// now derive some new element types for use in the mesh. We will derive
-// 2node 3node and 4node elements altho a possibly better option is to derive
-// a general element (see bottom).
-
 // Two node element
 class TwoNodeElement : public Element
 {

@@ -15,7 +15,7 @@
 // collection of nodes and elements linked together with member functions
 // to build the mesh, display information about the mesh, calcualte the 
 // results and write the solution to file. NODE_T is type of node that the 
-// mesh will use. Currently there is only one node type.
+// mesh will use.
 template <class NODE_T>
 class Mesh
 {
