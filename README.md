@@ -13,7 +13,7 @@ The correct order is:
 (order is only a guide, can be changed a little)
 
 
-https://github.com/d-green1958/FEM-For-Helmholtz-Eqn/blob/main/Report.pdf
+[Report](Report.pdf)
 
  
 
