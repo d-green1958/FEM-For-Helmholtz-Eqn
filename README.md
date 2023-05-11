@@ -12,6 +12,9 @@ The correct order is:
 8. Calculate the iteration"
 (order is only a guide, can be changed a little)
 
+
+[embed]https://github.com/d-green1958/FEM-For-Helmholtz-Eqn/blob/main/Report.pdf[embed]
+
  
 
 
