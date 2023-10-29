@@ -9,10 +9,9 @@ Please see [the FEM namespace](FiniteElementMethod.h) for the correct order of o
 Please see [this example](example.cpp) for an example of using the code.
 
 Cheers :)
-
-
-
-
+<p allign="center">
+ <img src="https://github.com/d-green1958/FEM-For-Helmholtz-Eqn/assets/120178639/aa9893a9-2826-4df4-89b3-e70c506d783c"  width="20%" height="20%">
+</p>
 
 
 
