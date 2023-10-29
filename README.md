@@ -1,6 +1,6 @@
 Note: this repo will only be public after the 15/05/2023.
 
-Hi, welcome to the repo for the code I produced during my MMath project. This is code I produced "from scratch" to demonstrate the FEM and its applications to the Helmholtz equation. To avoid complicated book keeping, this is limited to 1D. As for higher dimensions, I used [oomph-lib](https://github.com/oomph-lib/oomph-lib)
+Hi, welcome to the repo for the code I produced during my MMath project. This is code I produced "from scratch" to demonstrate the FEM and its applications to the Helmholtz equation. To avoid complicated book keeping, this is limited to 1D. As for higher dimensions, I used [oomph-lib](https://github.com/oomph-lib/oomph-lib).
 
 See [Report](Report.pdf) for more details on project.
 
